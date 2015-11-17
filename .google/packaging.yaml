@@ -1,0 +1,20 @@
+
+# GOOGLE SAMPLE PACKAGING DATA
+#
+# This file is used by Google as part of our samples packaging process.
+# End users may safely ignore this file. It has no relevance to other systems.
+---
+status:       PUBLISHED
+technologies: [Android]
+categories:   [Wearable]
+languages:    [Java]
+solutions:    [Mobile]
+github:       android-RuntimePermissionsWear
+level:        INTERMEDIATE
+icon:         screenshots/1.png
+apiRefs:
+    - android.gms.common.api.GoogleApiClient
+    - android.gms.wearable.MessageApi
+    - android.support.v4.app.ActivityCompat
+    - android.support.v7.app.AppCompatActivity
+license: apache2
