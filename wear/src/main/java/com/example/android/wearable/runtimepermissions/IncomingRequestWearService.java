@@ -107,33 +107,26 @@ public class IncomingRequestWearService extends WearableListenerService {
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.BODY_SENSORS)
                         == PackageManager.PERMISSION_GRANTED;
 
-        if (sensorPermissionApproved) {
-            sendSensorInformation();
-        } else {
+        if (!sensorPermissionApproved) {
             DataMap dataMap = new DataMap();
             dataMap.putInt(Constants.KEY_COMM_TYPE,
                     Constants.COMM_TYPE_RESPONSE_PERMISSION_REQUIRED);
             sendMessage(dataMap);
+        } else {
+            /* To keep the sample simple, we are only displaying the number of sensors. You could do
+             * something much more complicated.
+             */
+            SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+            List<Sensor> sensorList = sensorManager.getSensorList(Sensor.TYPE_ALL);
+            int numberOfSensorsOnDevice = sensorList.size();
+
+            String sensorSummary = numberOfSensorsOnDevice + " sensors on wear device(s)!";
+            DataMap dataMap = new DataMap();
+            dataMap.putInt(Constants.KEY_COMM_TYPE,
+                    Constants.COMM_TYPE_RESPONSE_DATA);
+            dataMap.putString(Constants.KEY_PAYLOAD, sensorSummary);
+            sendMessage(dataMap);
         }
-    }
-
-    /* To keep the sample simple, we are only displaying the number of sensors. You could do
-     * something much more complicated.
-     */
-    private void sendSensorInformation() {
-
-        Log.d(TAG, "sendSensorInformation()");
-
-        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        List<Sensor> sensorList = sensorManager.getSensorList(Sensor.TYPE_ALL);
-        int numberOfSensorsOnDevice = sensorList.size();
-
-        String sensorSummary = numberOfSensorsOnDevice + " sensors on wear device(s)!";
-        DataMap dataMap = new DataMap();
-        dataMap.putInt(Constants.KEY_COMM_TYPE,
-                Constants.COMM_TYPE_RESPONSE_DATA);
-        dataMap.putString(Constants.KEY_PAYLOAD, sensorSummary);
-        sendMessage(dataMap);
     }
 
     private void sendMessage(DataMap dataMap) {

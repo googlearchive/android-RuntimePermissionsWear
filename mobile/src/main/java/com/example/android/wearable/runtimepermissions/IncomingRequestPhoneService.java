@@ -100,45 +100,41 @@ public class IncomingRequestPhoneService extends WearableListenerService {
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                         == PackageManager.PERMISSION_GRANTED;
 
-        if (storagePermissionApproved) {
-            sendStorageInformation(nodeId);
-        } else {
+        if (!storagePermissionApproved) {
             DataMap dataMap = new DataMap();
             dataMap.putInt(Constants.KEY_COMM_TYPE,
                     Constants.COMM_TYPE_RESPONSE_PERMISSION_REQUIRED);
             sendMessage(nodeId, dataMap);
-        }
-    }
+        } else {
+            /* To keep the sample simple, we are only displaying the top level list of directories.
+             * Otherwise, it will return a message that the media wasn't available.
+             */
+            StringBuilder stringBuilder = new StringBuilder();
 
-    /* To keep the sample simple, we are only displaying the top level list of directories.
-     * Otherwise, it will return a message that the media wasn't available.
-     */
-    private void sendStorageInformation(String nodeId) {
+            if (isExternalStorageReadable()) {
+                File externalStorageDirectory = Environment.getExternalStorageDirectory();
+                String[] fileList = externalStorageDirectory.list();
 
-        StringBuilder stringBuilder = new StringBuilder();
-
-        if (isExternalStorageReadable()) {
-            File externalStorageDirectory = Environment.getExternalStorageDirectory();
-            String[] fileList = externalStorageDirectory.list();
-
-            if (fileList.length > 0) {
-                stringBuilder.append("List of directories on phone:\n");
-                for (String file : fileList) {
-                    stringBuilder.append(" - " + file + "\n");
+                if (fileList.length > 0) {
+                    stringBuilder.append("List of directories on phone:\n");
+                    for (String file : fileList) {
+                        stringBuilder.append(" - " + file + "\n");
+                    }
+                } else {
+                    stringBuilder.append("No files in external storage.");
                 }
             } else {
-                stringBuilder.append("No files in external storage.");
+                stringBuilder.append("No external media is available.");
             }
-        } else {
-            stringBuilder.append("No external media is available.");
-        }
 
-        // Send valid results
-        DataMap dataMap = new DataMap();
-        dataMap.putInt(Constants.KEY_COMM_TYPE,
-                Constants.COMM_TYPE_RESPONSE_DATA);
-        dataMap.putString(Constants.KEY_PAYLOAD, stringBuilder.toString());
-        sendMessage(nodeId, dataMap);
+            // Send valid results
+            DataMap dataMap = new DataMap();
+            dataMap.putInt(Constants.KEY_COMM_TYPE,
+                    Constants.COMM_TYPE_RESPONSE_DATA);
+            dataMap.putString(Constants.KEY_PAYLOAD, stringBuilder.toString());
+            sendMessage(nodeId, dataMap);
+
+        }
     }
 
     private void sendMessage(String nodeId, DataMap dataMap) {

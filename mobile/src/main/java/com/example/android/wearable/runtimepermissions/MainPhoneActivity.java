@@ -92,7 +92,7 @@ public class MainPhoneActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Log.d(TAG, "onCreate()");
         super.onCreate(savedInstanceState);
 
         /*
@@ -145,6 +145,7 @@ public class MainPhoneActivity extends AppCompatActivity implements
 
     @Override
     protected void onPause() {
+        Log.d(TAG, "onPause()");
         super.onPause();
         if ((mGoogleApiClient != null) && (mGoogleApiClient.isConnected())) {
             Wearable.CapabilityApi.removeCapabilityListener(
@@ -158,6 +159,7 @@ public class MainPhoneActivity extends AppCompatActivity implements
 
     @Override
     protected void onResume() {
+        Log.d(TAG, "onResume()");
         super.onResume();
 
         /* Enables app to handle 23+ (M+) style permissions. It also covers user changing
@@ -179,7 +181,7 @@ public class MainPhoneActivity extends AppCompatActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        Log.d(TAG, "onActivityResult()");
         if (requestCode == REQUEST_WEAR_PERMISSION_RATIONALE) {
 
             if (resultCode == Activity.RESULT_OK) {
