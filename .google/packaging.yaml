@@ -13,8 +13,8 @@ github:       android-RuntimePermissionsWear
 level:        INTERMEDIATE
 icon:         screenshots/1.png
 apiRefs:
-    - android:android.gms.common.api.GoogleApiClient
-    - android:android.gms.wearable.MessageApi
+    - gms:android.gms.common.api.GoogleApiClient
+    - gms:android.gms.wearable.MessageApi
     - android:android.support.v4.app.ActivityCompat
     - android:android.support.v7.app.AppCompatActivity
 license: apache2
