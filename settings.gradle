@@ -1,1 +1,2 @@
-include ':mobile', ':wear', ':common'
+
+include ':Application', ':Wearable', ':Shared'

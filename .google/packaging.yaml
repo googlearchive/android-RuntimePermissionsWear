@@ -6,15 +6,24 @@
 ---
 status:       PUBLISHED
 technologies: [Android]
-categories:   [Wearable]
+categories:   [Wearable, Permissions]
 languages:    [Java]
 solutions:    [Mobile]
 github:       android-RuntimePermissionsWear
 level:        INTERMEDIATE
-icon:         screenshots/1.png
+icon:         screenshots/icon-web.png
 apiRefs:
-    - gms:android.gms.common.api.GoogleApiClient
-    - gms:android.gms.wearable.MessageApi
     - android:android.support.v4.app.ActivityCompat
     - android:android.support.v7.app.AppCompatActivity
+    - android:android.support.wearable.activity.WearableActivity
+    - android:android.support.wearable.view.WatchViewStub
+    - android:com.google.android.gms.common.api.GoogleApiClient
+    - android:com.google.android.gms.wearable.CapabilityApi
+    - android:com.google.android.gms.wearable.CapabilityInfo
+    - android:com.google.android.gms.wearable.DataMap
+    - android:com.google.android.gms.wearable.MessageApi
+    - android:com.google.android.gms.wearable.MessageEvent
+    - android:com.google.android.gms.wearable.Node
+    - android:com.google.android.gms.wearable.Wearable
+    - android:com.google.android.gms.wearable.WearableListenerService
 license: apache2
