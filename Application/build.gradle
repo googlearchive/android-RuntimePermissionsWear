@@ -19,10 +19,10 @@ repositories {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.google.android.gms:play-services-wearable:11.4.0'
-    compile 'com.android.support:support-v13:26.1.0'
+    compile 'com.android.support:appcompat-v7:27.0.0'
+    compile 'com.android.support:design:27.0.0'
+    compile 'com.google.android.gms:play-services-wearable:11.4.2'
+    compile 'com.android.support:support-v13:27.0.0'
     compile project(':Shared')
     wearApp project(':Wearable')
 }
