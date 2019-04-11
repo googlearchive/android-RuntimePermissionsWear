@@ -20,11 +20,11 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
-import com.example.android.wearable.runtimepermissions.common.Constants;
+import androidx.core.app.ActivityCompat;
 
+import com.example.android.wearable.runtimepermissions.common.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.wearable.DataMap;
